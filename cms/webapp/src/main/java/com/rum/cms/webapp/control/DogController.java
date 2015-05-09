@@ -17,6 +17,10 @@ import org.springframework.web.servlet.tags.form.FormTag;
 import com.rum.cms.webapp.editors.DogEditor;
 import com.rum.modules.pojo.Dog;
 
+/**
+ * @author Hikmat
+ *
+ */
 @Controller("employeeController")
 @RequestMapping("admin/dogs")
 public class DogController {
@@ -88,7 +92,7 @@ public class DogController {
 	 * @return
 	 */
 	private ModelAndView getDogModelAndView(Dog persistentDog) {
-		ModelAndView modelAndView = new ModelAndView("admin/employee", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
+		ModelAndView modelAndView = new ModelAndView("admin/dog", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
 		return modelAndView;
 	}
 }
