@@ -2,7 +2,6 @@ package com.rum.cms.webapp.control;
 
 import javax.websocket.server.PathParam;
 
-import org.rum.service.ServiceFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.tags.form.FormTag;
 
+import com.rum.cms.modules.pojo.Dog;
+import com.rum.cms.service.ServiceFactory;
 import com.rum.cms.webapp.editors.DogEditor;
-import com.rum.modules.pojo.Dog;
 
 /**
  * @author Hikmat
  *
  */
-@Controller("employeeController")
-@RequestMapping("admin/dogs")
+@Controller("dogController")
+@RequestMapping("admin/dog")
 public class DogController {
 
 	@Autowired
@@ -76,7 +76,16 @@ public class DogController {
 		}
 		return getDogModelAndView(persistentDog);
 	}
-	
+
+	/**
+	 * @return
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView loadDogPage() {
+		Dog persistentDog = new Dog();
+		return getDogModelAndView(persistentDog);
+	}
+
 	/**
 	 * @param dog
 	 * @return
@@ -92,7 +101,7 @@ public class DogController {
 	 * @return
 	 */
 	private ModelAndView getDogModelAndView(Dog persistentDog) {
-		ModelAndView modelAndView = new ModelAndView("admin/dog", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
+		ModelAndView modelAndView = new ModelAndView("pages/admin/dog", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
 		return modelAndView;
 	}
 }

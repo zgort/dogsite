@@ -7,7 +7,7 @@ import java.beans.PropertyEditorSupport;
 
 import org.springframework.stereotype.Component;
 
-import com.rum.modules.pojo.FileType;
+import com.rum.cms.modules.pojo.FileType;
 
 /**
  * @author Hikmat

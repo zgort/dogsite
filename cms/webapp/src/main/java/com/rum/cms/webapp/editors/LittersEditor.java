@@ -5,12 +5,12 @@ package com.rum.cms.webapp.editors;
 
 import java.beans.PropertyEditorSupport;
 
-import org.rum.service.ServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.rum.modules.pojo.Litters;
+import com.rum.cms.modules.pojo.Litters;
+import com.rum.cms.service.ServiceFactory;
 
 /**
  * @author Hikmat
