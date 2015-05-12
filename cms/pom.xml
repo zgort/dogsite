@@ -10,7 +10,7 @@
 	<properties>
 		<start-class>com.rum.cms.webapp.engine.Starter</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<rum-cms-version>>0.0.1-SNAPSHOT</rum-cms-version>
+		<rum-cms-version>0.0.1-SNAPSHOT</rum-cms-version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 
