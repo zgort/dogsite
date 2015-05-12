@@ -101,7 +101,7 @@ public class DogController {
 	 * @return
 	 */
 	private ModelAndView getDogModelAndView(Dog persistentDog) {
-		ModelAndView modelAndView = new ModelAndView("pages/admin/dog", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
+		ModelAndView modelAndView = new ModelAndView("admin/dog", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
 		return modelAndView;
 	}
 }

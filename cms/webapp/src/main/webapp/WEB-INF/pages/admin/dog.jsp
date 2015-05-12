@@ -9,7 +9,9 @@
 <html>
 <head>
 <link href="<c:url value="/adminResources/css/bootstrap.min.css" />" rel="stylesheet">
-<link href="<c:url value="/adminResources/css/datepicker/bootstrap-theme.min.css" />" rel="stylesheet">
+<link href="<c:url value="/adminResources/css/bootstrap-theme.min.css" />" rel="stylesheet">
+<link href="<c:url value="/adminResources/css/datepicker/bootstrap-datepicker.min.css" />" rel="stylesheet">
+<script src="<c:url value="/adminResources/js/jquery.min.js" />"></script>
 <script src="<c:url value="/adminResources/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/adminResources/js/datepicker/bootstrap-datepicker.min.js" />"></script>
 
@@ -24,6 +26,14 @@
 			startView : 2,
 			autoclose : true,
 			todayHighlight : true
+		});
+		$('#sortDate').datepicker({
+			format : "dd/mm/yyyy",
+			todayBtn : "linked",
+			startView : 3,
+			autoclose : true,
+			todayHighlight : true,
+			todayBtn : "linked"
 		});
 	});
 </script>
@@ -44,7 +54,7 @@
 				<fmt:formatDate value="${dateOfBirth}" var="dateString" pattern="dd/MM/yyyy" />
 				<td><form:input id="dateOfBirth" path="dateOfBirth" value="${dateOfBirth}" cssClass="datepicker span2" /></td>
 			</tr>
-			
+
 			<tr>
 				<td><form:label path="sortDate">Sort Date</form:label></td>
 				<fmt:formatDate value="${sortDate}" var="dateString" pattern="dd/MM/yyyy" />
