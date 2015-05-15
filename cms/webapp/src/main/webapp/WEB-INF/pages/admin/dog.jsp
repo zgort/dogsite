@@ -41,7 +41,7 @@
 <body>
 
 	<h2>Dog Information</h2>
-	<form:form method="POST">
+	<form:form method="POST" action="../dogs/">
 		<table>
 			<tr>
 				<td><form:label path="name">Dog Name</form:label></td>
@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
 				<td><input type="submit" value="Submit" class="btn btn-primary" /></td>
-				<td><input type="button" onclick="location.href='employees'" value="Cancel" class="btn btn-default"></td>
+				<td><input type="button" onclick="location.href='../dogs/'" value="Cancel" class="btn btn-default"></td>
 			</tr>
 		</table>
 

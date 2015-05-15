@@ -5,6 +5,7 @@ package com.rum.cms.webapp.editors;
 
 import java.beans.PropertyEditorSupport;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -40,11 +41,17 @@ public class DogEditor extends PropertyEditorSupport {
 	 */
 	@Override
 	public void setAsText(String idStr) throws IllegalArgumentException {
-		if (StringUtils.isEmpty(idStr)) {
-			return;
+		Dog dog;
+		if (StringUtils.isEmpty(idStr) || !NumberUtils.isNumber(idStr)) {
+			dog = new Dog();
+		}else{
+			Integer id = Integer.parseInt(idStr);
+			dog = serviceFactory.getDogService().findOne(id);
+			if(dog == null){
+				dog = new Dog();
+			}
 		}
-		Integer id = Integer.parseInt(idStr);
-		Dog dog = serviceFactory.getDogService().findOne(id);
+		
 		setValue(dog);
 	}
 

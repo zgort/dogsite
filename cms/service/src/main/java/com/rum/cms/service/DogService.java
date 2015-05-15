@@ -155,6 +155,9 @@ class DogService implements IDogService {
 	 * @see org.springframework.data.repository.CrudRepository#delete(java.lang.Object)
 	 */
 	public void delete(Dog entity) {
+		if(entity.getId() == null || entity.getId() < 1){
+			return;
+		}
 		dogDAO.delete(entity);
 	}
 

@@ -12,5 +12,10 @@
   		<artifactId>modules</artifactId>
   		<version>${rum-cms-version}</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.rum</groupId>
+  		<artifactId>util</artifactId>
+  		<version>${rum-cms-version}</version>
+  	</dependency>
   </dependencies>
 </project>

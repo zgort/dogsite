@@ -1,12 +1,13 @@
 package com.rum.cms.webapp.control;
 
-import javax.websocket.server.PathParam;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.tags.form.FormTag;
 
 import com.rum.cms.modules.pojo.Dog;
+import com.rum.cms.service.IDogService;
 import com.rum.cms.service.ServiceFactory;
 import com.rum.cms.webapp.editors.DogEditor;
 
@@ -22,7 +24,7 @@ import com.rum.cms.webapp.editors.DogEditor;
  *
  */
 @Controller("dogController")
-@RequestMapping("admin/dog")
+@RequestMapping("admin/dogs")
 public class DogController {
 
 	@Autowired
@@ -46,7 +48,7 @@ public class DogController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView crateNewDog(Dog dog) {
 		serviceFactory.getDogService().save(dog);
-		return new ModelAndView("redirect:dogs");
+		return new ModelAndView("redirect:/admin/dogs/");
 	}
 
 	/**
@@ -55,8 +57,8 @@ public class DogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{dogId}", method = RequestMethod.PUT)
-	public ModelAndView updateDog(@RequestBody Dog transientDog, @PathParam("dogId") Dog persistentDog) {
-		if (persistentDog == null) {
+	public ModelAndView updateDog(@RequestBody Dog transientDog, @PathVariable("dogId") Dog persistentDog) {
+		if (persistentDog.getId() == null) {
 			persistentDog = transientDog;
 		} else {
 			BeanUtils.copyProperties(transientDog, persistentDog, IGNORE_PROPERTIES);
@@ -70,10 +72,7 @@ public class DogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{dogId}", method = RequestMethod.GET)
-	public ModelAndView getDog(@PathParam("dogId") Dog persistentDog) {
-		if (persistentDog == null) {
-			persistentDog = new Dog();
-		}
+	public ModelAndView getDog(@PathVariable("dogId") Dog persistentDog) {
 		return getDogModelAndView(persistentDog);
 	}
 
@@ -82,8 +81,11 @@ public class DogController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView loadDogPage() {
-		Dog persistentDog = new Dog();
-		return getDogModelAndView(persistentDog);
+		ModelAndView modelAndView = new ModelAndView("admin/dogs");
+		IDogService dogService = serviceFactory.getDogService();
+		List<Dog> findAll = dogService.findAll();
+		modelAndView.addObject("dogs", findAll);
+		return modelAndView;
 	}
 
 	/**
@@ -91,9 +93,9 @@ public class DogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{dogId}", method = RequestMethod.DELETE)
-	public ModelAndView removeDog(@PathParam("dogId") Dog dog) {
+	public ModelAndView removeDog(@PathVariable("dogId") Dog dog) {
 		serviceFactory.getDogService().delete(dog);
-		return new ModelAndView("redirect:dogs");
+		return new ModelAndView("redirect:/admin/dogs/");
 	}
 
 	/**
@@ -101,7 +103,8 @@ public class DogController {
 	 * @return
 	 */
 	private ModelAndView getDogModelAndView(Dog persistentDog) {
-		ModelAndView modelAndView = new ModelAndView("admin/dog", FormTag.DEFAULT_COMMAND_NAME, persistentDog);
+		ModelAndView modelAndView = new ModelAndView("admin/dog");
+		modelAndView.addObject(FormTag.DEFAULT_COMMAND_NAME, persistentDog);
 		return modelAndView;
 	}
 }
