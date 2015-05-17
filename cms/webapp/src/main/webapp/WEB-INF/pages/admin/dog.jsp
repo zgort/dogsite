@@ -41,7 +41,8 @@
 <body>
 
 	<h2>Dog Information</h2>
-	<form:form method="POST" action="../dogs/">
+	
+	<form:form method="${formMethod}" action="../dogs/${dogId}">
 		<table>
 			<tr>
 				<td><form:label path="name">Dog Name</form:label></td>
