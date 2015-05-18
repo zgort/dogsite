@@ -176,6 +176,30 @@ class DogService implements IDogService {
 	public void deleteAll() {
 		dogDAO.deleteAll();
 	}
+
+	/* (non-Javadoc)
+	 * @see com.rum.cms.service.IDogService#getFemales(org.springframework.data.domain.Pageable)
+	 */
+	@Override
+	public Page<Dog> getFemales(Pageable pageable) {
+		return dogDAO.findByMaleAndPublish(Boolean.FALSE, Boolean.TRUE, pageable);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.rum.cms.service.IDogService#getMales(org.springframework.data.domain.Pageable)
+	 */
+	@Override
+	public Page<Dog> getMales(Pageable pageable) {
+		return dogDAO.findByMaleAndPublish(Boolean.TRUE, Boolean.TRUE, pageable);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.rum.cms.service.IDogService#getForSale(org.springframework.data.domain.Pageable)
+	 */
+	@Override
+	public Page<Dog> getForSale(Pageable pageable) {
+		return dogDAO.findByForSaleAndPublish(Boolean.TRUE, Boolean.TRUE, pageable);
+	}
 	
 	
 }
