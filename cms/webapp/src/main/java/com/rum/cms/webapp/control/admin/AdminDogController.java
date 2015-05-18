@@ -1,4 +1,4 @@
-package com.rum.cms.webapp.control;
+package com.rum.cms.webapp.control.admin;
 
 import java.util.List;
 
@@ -24,9 +24,9 @@ import com.rum.cms.webapp.editors.DogEditor;
  * @author Hikmat
  *
  */
-@Controller("dogController")
+@Controller("adminDogController")
 @RequestMapping("admin/dogs")
-public class DogController {
+public class AdminDogController {
 
 	@Autowired
 	private ServiceFactory serviceFactory;
