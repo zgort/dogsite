@@ -42,7 +42,7 @@
 
 	<h2>Dog Information</h2>
 	
-	<form:form method="${formMethod}" action="../dogs/${dogId}">
+	<form:form method="${formMethod}" action="../dogs/${dogId}" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><form:label path="name">Dog Name</form:label></td>
