@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,11 +31,11 @@ public class Dog {
 	private Date sortDate;
 	private Boolean publish;
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private Set<File> images = new HashSet<>();
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private Set<File> reports = new HashSet<>();
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private Set<File> xRayImages = new HashSet<>();
 
 	public Integer getId() {

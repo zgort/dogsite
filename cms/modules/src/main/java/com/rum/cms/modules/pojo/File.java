@@ -17,7 +17,7 @@ public class File {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String fileName;
-	private FileType fileType;
+	private String fileType;
 	@Lob
 	private String desc;
 	private String referance;
@@ -38,11 +38,11 @@ public class File {
 		this.fileName = fileName;
 	}
 
-	public FileType getFileType() {
+	public String getFileType() {
 		return fileType;
 	}
 
-	public void setFileType(FileType fileType) {
+	public void setFileType(String fileType) {
 		this.fileType = fileType;
 	}
 

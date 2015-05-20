@@ -1,6 +1,9 @@
 package com.rum.cms.webapp.control.admin;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -12,10 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.tags.form.FormTag;
 
 import com.rum.cms.modules.pojo.Dog;
+import com.rum.cms.modules.pojo.File;
 import com.rum.cms.service.IDogService;
 import com.rum.cms.service.ServiceFactory;
 import com.rum.cms.webapp.editors.DogEditor;
@@ -47,7 +53,18 @@ public class AdminDogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView crateNewDog(Dog dog) {
+	public ModelAndView crateNewDog(Dog dog, @RequestParam("image") ArrayList<MultipartFile> images) {
+		Set<File> dogImages = dog.getImages();
+		for (MultipartFile multipartFile : images) {
+			String referance = UUID.randomUUID().toString();
+			String contentType = multipartFile.getContentType();
+			File imageFile = new File();
+			imageFile.setFileName(multipartFile.getName());
+			imageFile.setReferance(referance);
+			imageFile.setFileType(contentType);
+			dogImages.add(imageFile);
+		}
+		
 		serviceFactory.getDogService().save(dog);
 		return new ModelAndView("redirect:/admin/dogs/");
 	}

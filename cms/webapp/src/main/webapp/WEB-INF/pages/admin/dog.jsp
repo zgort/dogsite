@@ -37,11 +37,30 @@
 		});
 	});
 </script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						//add more image components if Add is clicked
+						$('#addImage')
+								.click(
+										function() {
+											var fileIndex = $('#imageTable tr')
+													.children().length - 1;
+											$('#imageTable')
+													.append(
+															'<tr><td>'
+																	+ '   <input type="file" name="image" />'
+																	+ '</td></tr>');
+										});
+
+					});
+</script>
 </head>
 <body>
 
 	<h2>Dog Information</h2>
-	
+
 	<form:form method="${formMethod}" action="../dogs/${dogId}" enctype="multipart/form-data">
 		<table>
 			<tr>
@@ -78,6 +97,18 @@
 			<tr>
 				<td><form:label path="publish">Publish</form:label></td>
 				<td><form:checkbox path="publish" /></td>
+			</tr>
+			<tr>
+				<p>Select Images to upload. Press Add button to add more Images.</p>
+
+				<table id="imageTable">
+					<tr>
+						<td><input name="image" type="file" /></td>
+					</tr>
+
+				</table>
+				
+				<input id="addImage" type="button" value="Add Image" />
 			</tr>
 			<tr>
 				<td><input type="submit" value="Submit" class="btn btn-primary" /></td>
