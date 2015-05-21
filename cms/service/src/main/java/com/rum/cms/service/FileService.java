@@ -37,10 +37,8 @@ class FileService implements IFileService {
 	 * @see com.rum.cms.service.IFileService#saveImage(org.springframework.web.multipart.MultipartFile, java.lang.String)
 	 */
 	public File saveImage(MultipartFile multipartFile) {
-		File file = null;
-		String fileName;
-		file = generateFile(multipartFile);
-		fileName = file.getFileName();
+		File file = generateFile(multipartFile);
+		String fileName = file.getFileName();
 		try {
 			fileDAO.saveImage(multipartFile, fileName);
 		} catch (IllegalStateException | IOException e) {
@@ -55,10 +53,8 @@ class FileService implements IFileService {
 	 * @see com.rum.cms.service.IFileService#saveReport(org.springframework.web.multipart.MultipartFile, java.lang.String)
 	 */
 	public File saveReport(MultipartFile multipartFile) {
-		File file = null;
-		String fileName;
-		file = generateFile(multipartFile);
-		fileName = file.getFileName();
+		File file = generateFile(multipartFile);;
+		String fileName = file.getFileName();
 		try {
 			fileDAO.saveReport(multipartFile, fileName);
 		} catch (IllegalStateException | IOException e) {
@@ -73,10 +69,8 @@ class FileService implements IFileService {
 	 * @see com.rum.cms.service.IFileService#saveXRayImage(org.springframework.web.multipart.MultipartFile, java.lang.String)
 	 */
 	public File saveXRayImage(MultipartFile multipartFile) {
-		File file = null;
-		String fileName;
-		file = generateFile(multipartFile);
-		fileName = file.getFileName();
+		File file = generateFile(multipartFile);
+		String fileName = file.getFileName();
 		try {
 			fileDAO.saveXRayImage(multipartFile, fileName);
 		} catch (IllegalStateException | IOException e) {
