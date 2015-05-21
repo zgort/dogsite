@@ -79,23 +79,6 @@ class FileService implements IFileService {
 		return file;
 	}
 
-	/**
-	 * @param multipartFile
-	 * @return
-	 */
-	private File generateFile(MultipartFile multipartFile) {
-		File file = new File();
-		String referance = UUID.randomUUID().toString();
-		String contentType = multipartFile.getContentType();
-		String originalFilename = multipartFile.getOriginalFilename();
-		long fileSize = multipartFile.getSize();
-		file.setReferance(referance);
-		file.setFileType(contentType);
-		file.setFileName(originalFilename);
-		file.setFileSize(fileSize);
-		return file;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.rum.cms.service.IFileService#saveImage(java.util.Set)
 	 */
@@ -135,4 +118,20 @@ class FileService implements IFileService {
 		return files;
 	}
 
+	/**
+	 * @param multipartFile
+	 * @return
+	 */
+	private File generateFile(MultipartFile multipartFile) {
+		File file = new File();
+		String referance = UUID.randomUUID().toString();
+		String contentType = multipartFile.getContentType();
+		String originalFilename = multipartFile.getOriginalFilename();
+		long fileSize = multipartFile.getSize();
+		file.setReferance(referance);
+		file.setFileType(contentType);
+		file.setFileName(originalFilename);
+		file.setFileSize(fileSize);
+		return file;
+	}
 }
