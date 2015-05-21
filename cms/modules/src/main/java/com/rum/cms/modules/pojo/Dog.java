@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Hikmat
@@ -20,7 +23,7 @@ import javax.persistence.OneToMany;
 public class Dog {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
 	@Lob
@@ -31,12 +34,19 @@ public class Dog {
 	private Date sortDate;
 	private Boolean publish;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<File> images = new HashSet<>();
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<File> reports = new HashSet<>();
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<File> xRayImages = new HashSet<>();
+
+	@Transient
+	private Set<MultipartFile> imagesFile = new HashSet<>();
+	@Transient
+	private Set<MultipartFile> reportsFile = new HashSet<>();
+	@Transient
+	private Set<MultipartFile> xRayImagesFile = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -124,6 +134,51 @@ public class Dog {
 
 	public void setPublish(Boolean publish) {
 		this.publish = publish;
+	}
+
+	/**
+	 * @return the imagesFile
+	 */
+	public Set<MultipartFile> getImagesFile() {
+		return imagesFile;
+	}
+
+	/**
+	 * @param imagesFile
+	 *            the imagesFile to set
+	 */
+	public void setImagesFile(Set<MultipartFile> imagesFile) {
+		this.imagesFile = imagesFile;
+	}
+
+	/**
+	 * @return the reportsFile
+	 */
+	public Set<MultipartFile> getReportsFile() {
+		return reportsFile;
+	}
+
+	/**
+	 * @param reportsFile
+	 *            the reportsFile to set
+	 */
+	public void setReportsFile(Set<MultipartFile> reportsFile) {
+		this.reportsFile = reportsFile;
+	}
+
+	/**
+	 * @return the xRayImagesFile
+	 */
+	public Set<MultipartFile> getxRayImagesFile() {
+		return xRayImagesFile;
+	}
+
+	/**
+	 * @param xRayImagesFile
+	 *            the xRayImagesFile to set
+	 */
+	public void setxRayImagesFile(Set<MultipartFile> xRayImagesFile) {
+		this.xRayImagesFile = xRayImagesFile;
 	}
 
 }

@@ -20,6 +20,8 @@ public class ServiceFactory {
 	private IDogService dogService;
 	@Autowired
 	private ILittersService littersService;
+	@Autowired
+	private IFileService fileService;
 
 	/**
 	 * @return the dogService
@@ -33,6 +35,13 @@ public class ServiceFactory {
 	 */
 	public ILittersService getLittersService() {
 		return littersService;
+	}
+
+	/**
+	 * @return the fileService
+	 */
+	public IFileService getFileService() {
+		return fileService;
 	}
 
 }

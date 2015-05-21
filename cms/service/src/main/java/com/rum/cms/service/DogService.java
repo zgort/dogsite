@@ -1,6 +1,7 @@
 package com.rum.cms.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rum.cms.dao.IDogDAO;
 import com.rum.cms.modules.pojo.Dog;
@@ -18,6 +20,8 @@ class DogService implements IDogService {
 
 	@Autowired
 	private IDogDAO dogDAO;
+	@Autowired
+	private ServiceFactory serviceFactory;
 
 	/**
 	 * @param entity
@@ -26,6 +30,15 @@ class DogService implements IDogService {
 	 */
 	@Transactional
 	public <S extends Dog> S save(S entity) {
+		IFileService fileService = serviceFactory.getFileService();
+		Set<MultipartFile> imagesFile = entity.getImagesFile();
+		Set<MultipartFile> xRayImagesFile = entity.getxRayImagesFile();
+		Set<MultipartFile> reportsFile = entity.getReportsFile();
+
+		fileService.saveImage(imagesFile);
+		fileService.saveReport(reportsFile);
+		fileService.saveXRayImage(xRayImagesFile);
+		
 		return dogDAO.save(entity);
 	}
 

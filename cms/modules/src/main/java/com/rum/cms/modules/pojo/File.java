@@ -14,10 +14,11 @@ import javax.persistence.Lob;
 public class File {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String fileName;
 	private String fileType;
+	private Long fileSize;
 	@Lob
 	private String desc;
 	private String referance;
@@ -60,6 +61,21 @@ public class File {
 
 	public void setReferance(String referance) {
 		this.referance = referance;
+	}
+
+	/**
+	 * @return the fileSize
+	 */
+	public Long getFileSize() {
+		return fileSize;
+	}
+
+	/**
+	 * @param fileSize
+	 *            the fileSize to set
+	 */
+	public void setFileSize(Long fileSize) {
+		this.fileSize = fileSize;
 	}
 
 }

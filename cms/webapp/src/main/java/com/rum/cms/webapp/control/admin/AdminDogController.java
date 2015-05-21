@@ -1,9 +1,7 @@
 package com.rum.cms.webapp.control.admin;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.tags.form.FormTag;
 
 import com.rum.cms.modules.pojo.Dog;
-import com.rum.cms.modules.pojo.File;
 import com.rum.cms.service.IDogService;
 import com.rum.cms.service.ServiceFactory;
 import com.rum.cms.webapp.editors.DogEditor;
@@ -53,18 +50,10 @@ public class AdminDogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView crateNewDog(Dog dog, @RequestParam("image") ArrayList<MultipartFile> images) {
-		Set<File> dogImages = dog.getImages();
-		for (MultipartFile multipartFile : images) {
-			String referance = UUID.randomUUID().toString();
-			String contentType = multipartFile.getContentType();
-			File imageFile = new File();
-			imageFile.setFileName(multipartFile.getName());
-			imageFile.setReferance(referance);
-			imageFile.setFileType(contentType);
-			dogImages.add(imageFile);
-		}
-		
+	public ModelAndView crateNewDog(Dog dog, @RequestParam("image") HashSet<MultipartFile> images/*, @RequestParam("report") HashSet<MultipartFile> reports, @RequestParam("xRayImage") HashSet<MultipartFile> xRayImages*/) {
+		dog.setImagesFile(images);
+//		dog.setReportsFile(reports);
+//		dog.setxRayImagesFile(xRayImages);
 		serviceFactory.getDogService().save(dog);
 		return new ModelAndView("redirect:/admin/dogs/");
 	}
