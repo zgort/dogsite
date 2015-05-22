@@ -50,10 +50,11 @@ public class AdminDogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView crateNewDog(Dog dog, @RequestParam("image") HashSet<MultipartFile> images/*, @RequestParam("report") HashSet<MultipartFile> reports, @RequestParam("xRayImage") HashSet<MultipartFile> xRayImages*/) {
+	public ModelAndView crateNewDog(Dog dog, @RequestParam("mainImage") MultipartFile mainImage, @RequestParam("image") HashSet<MultipartFile> images, @RequestParam("report") HashSet<MultipartFile> reports, @RequestParam("xRayImage") HashSet<MultipartFile> xRayImages) {
+		dog.setMainImageFile(mainImage);
 		dog.setImagesFile(images);
-//		dog.setReportsFile(reports);
-//		dog.setxRayImagesFile(xRayImages);
+		dog.setReportsFile(reports);
+		dog.setxRayImagesFile(xRayImages);
 		serviceFactory.getDogService().save(dog);
 		return new ModelAndView("redirect:/admin/dogs/");
 	}

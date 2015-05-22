@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.rum.cms.dao.IDogDAO;
 import com.rum.cms.modules.pojo.Dog;
+import com.rum.cms.modules.pojo.File;
 
 @Service
 class DogService implements IDogService {
@@ -31,13 +32,20 @@ class DogService implements IDogService {
 	@Transactional
 	public <S extends Dog> S save(S entity) {
 		IFileService fileService = serviceFactory.getFileService();
+		MultipartFile mainImageFile = entity.getMainImageFile();
 		Set<MultipartFile> imagesFile = entity.getImagesFile();
 		Set<MultipartFile> xRayImagesFile = entity.getxRayImagesFile();
 		Set<MultipartFile> reportsFile = entity.getReportsFile();
 
-		fileService.saveImage(imagesFile);
-		fileService.saveReport(reportsFile);
-		fileService.saveXRayImage(xRayImagesFile);
+		File mainImage = fileService.saveImage(mainImageFile);
+		Set<File> images = fileService.saveImage(imagesFile);
+		Set<File> reports = fileService.saveReport(reportsFile);
+		Set<File> xRayImages = fileService.saveXRayImage(xRayImagesFile);
+		
+		entity.setMainImage(mainImage);
+		entity.setImages(images);
+		entity.setReports(reports);
+		entity.setxRayImages(xRayImages);
 		
 		return dogDAO.save(entity);
 	}

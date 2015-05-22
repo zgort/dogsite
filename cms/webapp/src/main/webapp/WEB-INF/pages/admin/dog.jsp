@@ -98,24 +98,51 @@
 				<td><form:label path="publish">Publish</form:label></td>
 				<td><form:checkbox path="publish" /></td>
 			</tr>
+		</table>
+		<table>
 			<tr>
-				<p>Select Images to upload. Press Add button to add more Images.</p>
-
-				<table id="imageTable">
-					<tr>
-						<td><input name="image" type="file" /></td>
-					</tr>
-
-				</table>
-				
-				<input id="addImage" type="button" value="Add Image" />
+				<td>
+					<p>Select main Image</p>
+					<table id="mainImageTable">
+						<tr>
+							<td><input name="mainImage" type="file" /></td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Submit" class="btn btn-primary" /></td>
-				<td><input type="button" onclick="location.href='../dogs/'" value="Cancel" class="btn btn-default"></td>
+				<td>
+					<p>Select Images to upload. Press Add button to add more Images.</p>
+					<table id="imageTable">
+						<tr>
+							<td><input name="image" type="file" /></td>
+						</tr>
+					</table> <input id="addImage" type="button" value="Add Image" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Select Reports to upload. Press Add button to add more Reports.</p>
+					<table id="reportTable">
+						<tr>
+							<td><input name="report" type="file" /></td>
+						</tr>
+					</table> <input id="addReport" type="button" value="Add Report" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Select xRayImage to upload. Press Add button to add more XRayImage.</p>
+					<table id="xRayImageTable">
+						<tr>
+							<td><input name="xRayImage" type="file" /></td>
+						</tr>
+					</table> <input id="addXRayImage" type="button" value="Add XRayImage" />
+				</td>
 			</tr>
 		</table>
-
+		<input type="submit" value="Submit" class="btn btn-primary" />
+		<input type="button" onclick="location.href='../dogs/'" value="Cancel" class="btn btn-default">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form:form>
 

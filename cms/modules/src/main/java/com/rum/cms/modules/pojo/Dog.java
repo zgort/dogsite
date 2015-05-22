@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +35,9 @@ public class Dog {
 	private Date sortDate;
 	private Boolean publish;
 
+	@OneToOne
+	private File mainImage;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<File> images = new HashSet<>();
 	@OneToMany(cascade = CascadeType.ALL)
@@ -41,6 +45,8 @@ public class Dog {
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<File> xRayImages = new HashSet<>();
 
+	@Transient
+	private MultipartFile mainImageFile;
 	@Transient
 	private Set<MultipartFile> imagesFile = new HashSet<>();
 	@Transient
@@ -179,6 +185,34 @@ public class Dog {
 	 */
 	public void setxRayImagesFile(Set<MultipartFile> xRayImagesFile) {
 		this.xRayImagesFile = xRayImagesFile;
+	}
+
+	/**
+	 * @return the mainImage
+	 */
+	public File getMainImage() {
+		return mainImage;
+	}
+
+	/**
+	 * @param mainImage the mainImage to set
+	 */
+	public void setMainImage(File mainImage) {
+		this.mainImage = mainImage;
+	}
+
+	/**
+	 * @return the mainImageFile
+	 */
+	public MultipartFile getMainImageFile() {
+		return mainImageFile;
+	}
+
+	/**
+	 * @param mainImageFile the mainImageFile to set
+	 */
+	public void setMainImageFile(MultipartFile mainImageFile) {
+		this.mainImageFile = mainImageFile;
 	}
 
 }
