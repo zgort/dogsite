@@ -9,9 +9,11 @@
 <html>
 <head>
 <link href="<c:url value="/adminResources/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<c:url value="/adminResources/css/fileinput.min.css" />" rel="stylesheet">
 <link href="<c:url value="/adminResources/css/bootstrap-theme.min.css" />" rel="stylesheet">
 <link href="<c:url value="/adminResources/css/datepicker/bootstrap-datepicker.min.css" />" rel="stylesheet">
 <script src="<c:url value="/adminResources/js/jquery.min.js" />"></script>
+<script src="<c:url value="/adminResources/js/fileinput.min.js" />"></script>
 <script src="<c:url value="/adminResources/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/adminResources/js/datepicker/bootstrap-datepicker.min.js" />"></script>
 
@@ -38,23 +40,9 @@
 	});
 </script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						//add more image components if Add is clicked
-						$('#addImage')
-								.click(
-										function() {
-											var fileIndex = $('#imageTable tr')
-													.children().length - 1;
-											$('#imageTable')
-													.append(
-															'<tr><td>'
-																	+ '   <input type="file" name="image" />'
-																	+ '</td></tr>');
-										});
-
-					});
+	$(document).ready(function() {
+		$("input[type='file']").fileinput({'showUpload':false, 'previewFileType':'any'});
+	});
 </script>
 </head>
 <body>
@@ -105,7 +93,7 @@
 					<p>Select main Image</p>
 					<table id="mainImageTable">
 						<tr>
-							<td><input name="mainImage" type="file" /></td>
+							<td><input name="mainImageFile" type="file" /></td>
 						</tr>
 					</table>
 				</td>
@@ -115,9 +103,9 @@
 					<p>Select Images to upload. Press Add button to add more Images.</p>
 					<table id="imageTable">
 						<tr>
-							<td><input name="image" type="file" /></td>
+							<td><input name="imageFile" type="file" multiple/></td>
 						</tr>
-					</table> <input id="addImage" type="button" value="Add Image" />
+					</table>
 				</td>
 			</tr>
 			<tr>
@@ -125,9 +113,9 @@
 					<p>Select Reports to upload. Press Add button to add more Reports.</p>
 					<table id="reportTable">
 						<tr>
-							<td><input name="report" type="file" /></td>
+							<td><input name="reportFile" type="file" multiple/></td>
 						</tr>
-					</table> <input id="addReport" type="button" value="Add Report" />
+					</table>
 				</td>
 			</tr>
 			<tr>
@@ -135,9 +123,9 @@
 					<p>Select xRayImage to upload. Press Add button to add more XRayImage.</p>
 					<table id="xRayImageTable">
 						<tr>
-							<td><input name="xRayImage" type="file" /></td>
+							<td><input name="xRayImageFile" type="file" multiple/></td>
 						</tr>
-					</table> <input id="addXRayImage" type="button" value="Add XRayImage" />
+					</table>
 				</td>
 			</tr>
 		</table>
