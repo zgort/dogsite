@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.tags.form.FormTag;
 
 import com.rum.cms.modules.pojo.Dog;
 import com.rum.cms.service.IDogService;
@@ -40,7 +39,7 @@ public class DogContoller {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/paginationMales", method = RequestMethod.GET)
+	@RequestMapping(value = "/malesPagination", method = RequestMethod.GET)
 	public Page<Dog> getMales(@RequestParam int pageNumber, @RequestParam int pageSize){
 		PageRequest pageRequest = new PageRequest(pageNumber, pageSize);
 		return serviceFactory.getDogService().getMales(pageRequest);
@@ -58,7 +57,7 @@ public class DogContoller {
 	 */
 	@RequestMapping(value = "/males", method = RequestMethod.GET)
 	public ModelAndView getFirstTenMales(){
-		ModelAndView modelAndView = new ModelAndView("males");
+		ModelAndView modelAndView = new ModelAndView("dogs");
 		PageRequest pageRequest = new PageRequest(0, 10);
 		IDogService dogService = serviceFactory.getDogService();
 		Page<Dog> findAll = dogService.getMales(pageRequest);
@@ -71,10 +70,23 @@ public class DogContoller {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/females", method = RequestMethod.GET)
+	@RequestMapping(value = "/femalesPagination", method = RequestMethod.GET)
 	public Page<Dog> getFemales(@RequestParam int pageNumber, @RequestParam int pageSize){
 		PageRequest pageRequest = new PageRequest(pageNumber, pageSize);
 		return serviceFactory.getDogService().getMales(pageRequest);
+	}
+	
+	/**
+	 * @return
+	 */
+	@RequestMapping(value = "/females", method = RequestMethod.GET)
+	public ModelAndView getFirstTenFemales(){
+		ModelAndView modelAndView = new ModelAndView("dogs");
+		PageRequest pageRequest = new PageRequest(0, 10);
+		IDogService dogService = serviceFactory.getDogService();
+		Page<Dog> findAll = dogService.getFemales(pageRequest);
+		modelAndView.addObject("dogs", findAll);
+		return modelAndView;
 	}
 	
 	/**

@@ -42,9 +42,9 @@
 				<li><a href="pages/aboutUs.html">About Us</a></li>
 				<li><a href="#">News</a></li>
  -->				
- 				<li><a href="dogs/males">Males</a></li>
-				<li><a href="#">Females</a></li>
-				<li><a href="pages/forSale.html">For Sale</a></li>
+ 				<li><a href="/dogs/males">Males</a></li>
+				<li><a href="/dogs/females">Females</a></li>
+				<!-- <li><a href="/pages/forSale.html">For Sale</a></li> -->
 				<!-- 
 				<li><a href="pages/gallery.html">Gallery</a></li>
 				<li><a href="#">Contact</a></li>
