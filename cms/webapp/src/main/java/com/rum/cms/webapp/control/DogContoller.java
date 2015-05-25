@@ -6,10 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.tags.form.FormTag;
 
 import com.rum.cms.modules.pojo.Dog;
 import com.rum.cms.service.IDogService;
@@ -44,6 +46,13 @@ public class DogContoller {
 		return serviceFactory.getDogService().getMales(pageRequest);
 	}
 	
+	@RequestMapping(value = "/{dogId}", method = RequestMethod.GET)
+	public ModelAndView getDog(@PathVariable("dogId") Dog persistentDog) {
+		ModelAndView modelAndView = new ModelAndView("dog");
+		modelAndView.addObject("dog", persistentDog);
+		return modelAndView;
+	}
+	
 	/**
 	 * @return
 	 */
@@ -55,7 +64,6 @@ public class DogContoller {
 		Page<Dog> findAll = dogService.getMales(pageRequest);
 		modelAndView.addObject("dogs", findAll);
 		return modelAndView;
-		
 	}
 	
 	/**
