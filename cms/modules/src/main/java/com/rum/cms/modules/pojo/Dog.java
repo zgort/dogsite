@@ -35,7 +35,7 @@ public class Dog {
 	private Date sortDate;
 	private Boolean publish;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private File mainImage;
 	
 	@OneToMany(cascade = CascadeType.ALL)

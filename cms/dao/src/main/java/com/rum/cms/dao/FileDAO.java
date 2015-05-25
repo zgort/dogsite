@@ -43,7 +43,10 @@ class FileDAO implements IFileDAO{
 	 * @throws IOException
 	 */
 	private void saveFile(MultipartFile multipartFile, String fileName, String dir) throws IOException {
-		File file = new File(dir+"/"+fileName);
+		if(multipartFile.getSize() == 0){
+			return;
+		}
+		File file = new File(dir+fileName);
 		multipartFile.transferTo(file);
 	}	
 	

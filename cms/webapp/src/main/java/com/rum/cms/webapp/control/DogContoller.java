@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rum.cms.modules.pojo.Dog;
+import com.rum.cms.service.IDogService;
 import com.rum.cms.service.ServiceFactory;
 import com.rum.cms.webapp.editors.DogEditor;
 
@@ -36,10 +38,24 @@ public class DogContoller {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/males", method = RequestMethod.GET)
+	@RequestMapping(value = "/paginationMales", method = RequestMethod.GET)
 	public Page<Dog> getMales(@RequestParam int pageNumber, @RequestParam int pageSize){
 		PageRequest pageRequest = new PageRequest(pageNumber, pageSize);
 		return serviceFactory.getDogService().getMales(pageRequest);
+	}
+	
+	/**
+	 * @return
+	 */
+	@RequestMapping(value = "/males", method = RequestMethod.GET)
+	public ModelAndView getFirstTenMales(){
+		ModelAndView modelAndView = new ModelAndView("males");
+		PageRequest pageRequest = new PageRequest(0, 10);
+		IDogService dogService = serviceFactory.getDogService();
+		Page<Dog> findAll = dogService.getMales(pageRequest);
+		modelAndView.addObject("dogs", findAll);
+		return modelAndView;
+		
 	}
 	
 	/**
