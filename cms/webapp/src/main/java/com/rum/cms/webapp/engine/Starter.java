@@ -1,4 +1,4 @@
-package com.run.cms.webapp.engine;
+package com.rum.cms.webapp.engine;
 
 import org.jsondoc.spring.boot.starter.EnableJSONDoc;
 import org.springframework.boot.SpringApplication;
