@@ -10,6 +10,7 @@ public class Dog {
 	private String name;
 	private String desc;
 	private Boolean male;
+	private Boolean forSale;
 	private Date dateOfBirth;
 	private Date sortDate;
 
@@ -87,6 +88,14 @@ public class Dog {
 
 	public void setSortDate(Date sortDate) {
 		this.sortDate = sortDate;
+	}
+
+	public Boolean getForSale() {
+		return forSale;
+	}
+
+	public void setForSale(Boolean forSale) {
+		this.forSale = forSale;
 	}
 
 }
