@@ -13,6 +13,7 @@ public class Dog {
 	private Boolean forSale;
 	private Date dateOfBirth;
 	private Date sortDate;
+	private Boolean publish;
 
 	private Set<File> images = new HashSet<>();
 	private Set<File> reports = new HashSet<>();
@@ -96,6 +97,14 @@ public class Dog {
 
 	public void setForSale(Boolean forSale) {
 		this.forSale = forSale;
+	}
+
+	public Boolean getPublish() {
+		return publish;
+	}
+
+	public void setPublish(Boolean publish) {
+		this.publish = publish;
 	}
 
 }
