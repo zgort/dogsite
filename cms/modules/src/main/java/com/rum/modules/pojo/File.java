@@ -1,10 +1,24 @@
 package com.rum.modules.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
+/**
+ * @author Hikmat
+ *
+ */
+@Entity
 public class File {
 
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String fileName;
 	private FileType fileType;
+	@Lob
 	private String desc;
 	private String referance;
 

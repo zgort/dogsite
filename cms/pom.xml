@@ -19,7 +19,8 @@
 		<spring.boot.starter.parent.version>1.2.2.RELEASE</spring.boot.starter.parent.version>
 		<spring.boot.starter.tomcat.version>1.2.3.RELEASE</spring.boot.starter.tomcat.version>
 		<spring.boot.starter.jsondoc.version>1.1.13</spring.boot.starter.jsondoc.version>
-
+		<spring-boot-data-jpa>1.2.3.RELEASE</spring-boot-data-jpa>
+		<com.h2database.version>1.4.187</com.h2database.version>
 		<jsondoc-ui-webjar.version>1.1.13</jsondoc-ui-webjar.version>
 	</properties>
 
@@ -52,6 +53,16 @@
 			<groupId>org.jsondoc</groupId>
 			<artifactId>jsondoc-ui-webjar</artifactId>
 			<version>${jsondoc-ui-webjar.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${spring-boot-data-jpa}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${com.h2database.version}</version>
 		</dependency>
 	</dependencies>
 

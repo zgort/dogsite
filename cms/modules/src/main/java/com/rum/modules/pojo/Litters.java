@@ -4,11 +4,25 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
+/**
+ * @author Hikmat
+ *
+ */
+@Entity
 public class Litters {
 
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private Dog father;
 	private Dog mother;
+	@Lob
 	private String desc;
 	private Set<File> childes = new HashSet<>();
 	private Date sortDate;

@@ -6,4 +6,11 @@
     <version>${rum-cms-version}</version>
   </parent>
   <artifactId>service</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.rum</groupId>
+  		<artifactId>dao</artifactId>
+  		<version>${rum-cms-version}</version>
+  	</dependency>
+  </dependencies>
 </project>
