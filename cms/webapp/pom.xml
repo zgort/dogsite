@@ -19,4 +19,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.rum</groupId>
+			<artifactId>service</artifactId>
+			<version>${rum-cms-version}</version>
+		</dependency>
+	</dependencies>
 </project>
