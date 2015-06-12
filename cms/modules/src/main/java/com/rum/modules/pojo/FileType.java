@@ -35,7 +35,7 @@ public enum FileType {
 		return label;
 	}
 	
-	public static FileType getMaritalStatus(int id){
+	public static FileType getFileType(int id){
 		FileType fileType = MAP.get(id);
 		return fileType;
 	}
